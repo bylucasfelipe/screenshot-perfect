@@ -8,9 +8,11 @@ export const Route = createFileRoute("/laboratorio-ia")({
       { name: "description", content: "Demonstração transparente do uso de inteligência artificial na análise de ilhas de calor." },
       { property: "og:title", content: "Laboratório de IA — Termômetro Urbano" },
       { property: "og:description", content: "Demonstração transparente do uso de IA na análise." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: () => (
-    <SectionStub n="03" title="Laboratório de IA" intro="Uma demonstração aberta de como a inteligência artificial apoia — sem substituir — a leitura dos dados territoriais." />
+    <SectionStub n="03" title="Laboratório de IA" intro="Não há execução de IA, modelo treinado ou estimativas geradas nesta versão. O papel proposto da IA, seus limites e os requisitos de revisão humana estão descritos na Metodologia." />
   ),
 });
