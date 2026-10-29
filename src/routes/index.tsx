@@ -9,6 +9,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Observatório educacional sobre ilhas de calor urbanas em São Paulo: dados, metodologia, IA e indicadores ESG." },
       { property: "og:title", content: "Termômetro Urbano — A cidade não esquenta por igual" },
       { property: "og:description", content: "Observatório educacional sobre ilhas de calor urbanas em São Paulo." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
@@ -123,9 +125,9 @@ function Index() {
                   <span className="label-mono text-ochre">{s.n}</span>
                   <span>
                     <span className="block font-display text-3xl transition-colors group-hover:text-ochre md:text-4xl">{s.label}</span>
-                    <span className="mt-2 block text-sm text-paper/70">{s.desc}</span>
+                   <span className="mt-2 block text-sm text-paper-muted">{s.desc}</span>
                   </span>
-                  <span className="label-mono text-paper/60 transition-transform group-hover:translate-x-1">→</span>
+                  <span aria-hidden="true" className="label-mono text-paper-muted transition-transform group-hover:translate-x-1">→</span>
                 </Link>
               </li>
             ))}
