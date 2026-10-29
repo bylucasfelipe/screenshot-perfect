@@ -21,7 +21,7 @@ function ThermalProfile() {
     <figure>
       <svg viewBox="0 0 720 200" className="w-full" role="img" aria-labelledby="perfil-t">
         <title id="perfil-t">Perfil térmico ilustrativo: temperatura mais alta no centro adensado e mais baixa nas áreas arborizadas</title>
-        <polyline points={pts.split(" ").map((p) => { const [x, y] = p.split(","); return `${x},${+y + 20}`; }).join(" ")} fill="none" className="stroke-terracotta" strokeWidth="2.5" />
+        <polyline points={pts.split(" ").map((p) => { const [x, y] = p.split(","); return `${x},${Number(y ?? 0) + 20}`; }).join(" ")} fill="none" className="stroke-terracotta" strokeWidth="2.5" />
         {/* edifícios */}
         {Array.from({ length: 24 }).map((_, i) => {
           const x = i * 30 + 4;
