@@ -38,7 +38,6 @@ export function HeatMap({ compact = false }: { compact?: boolean }) {
           <g className="fill-charcoal font-mono" fontSize="8" letterSpacing="1">
             <text x="0" y="-14">46°50′O</text>
             <text x="270" y="-14">46°20′O</text>
-            <text x="-26" y="10" transform="rotate(-90 -26 10)">23°20′S</text>
             {/* norte */}
             <g transform="translate(320 20)">
               <path d="M0 -14 L6 6 L0 2 L-6 6 Z" className="fill-charcoal" />
