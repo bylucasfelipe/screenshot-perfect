@@ -10,33 +10,81 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ImpactoEsgRouteImport } from './routes/impacto-esg'
+import { Route as LaboratorioIaRouteImport } from './routes/laboratorio-ia'
+import { Route as MetodologiaRouteImport } from './routes/metodologia'
+import { Route as ObservatorioRouteImport } from './routes/observatorio'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ImpactoEsgRoute = ImpactoEsgRouteImport.update({
+  id: '/impacto-esg',
+  path: '/impacto-esg',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LaboratorioIaRoute = LaboratorioIaRouteImport.update({
+  id: '/laboratorio-ia',
+  path: '/laboratorio-ia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetodologiaRoute = MetodologiaRouteImport.update({
+  id: '/metodologia',
+  path: '/metodologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ObservatorioRoute = ObservatorioRouteImport.update({
+  id: '/observatorio',
+  path: '/observatorio',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/impacto-esg': typeof ImpactoEsgRoute
+  '/laboratorio-ia': typeof LaboratorioIaRoute
+  '/metodologia': typeof MetodologiaRoute
+  '/observatorio': typeof ObservatorioRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/impacto-esg': typeof ImpactoEsgRoute
+  '/laboratorio-ia': typeof LaboratorioIaRoute
+  '/metodologia': typeof MetodologiaRoute
+  '/observatorio': typeof ObservatorioRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/impacto-esg': typeof ImpactoEsgRoute
+  '/laboratorio-ia': typeof LaboratorioIaRoute
+  '/metodologia': typeof MetodologiaRoute
+  '/observatorio': typeof ObservatorioRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/impacto-esg' | '/laboratorio-ia' | '/metodologia' | '/observatorio'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/impacto-esg' | '/laboratorio-ia' | '/metodologia' | '/observatorio'
+  id:
+    | '__root__'
+    | '/'
+    | '/impacto-esg'
+    | '/laboratorio-ia'
+    | '/metodologia'
+    | '/observatorio'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ImpactoEsgRoute: typeof ImpactoEsgRoute
+  LaboratorioIaRoute: typeof LaboratorioIaRoute
+  MetodologiaRoute: typeof MetodologiaRoute
+  ObservatorioRoute: typeof ObservatorioRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +96,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/impacto-esg': {
+      id: '/impacto-esg'
+      path: '/impacto-esg'
+      fullPath: '/impacto-esg'
+      preLoaderRoute: typeof ImpactoEsgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/laboratorio-ia': {
+      id: '/laboratorio-ia'
+      path: '/laboratorio-ia'
+      fullPath: '/laboratorio-ia'
+      preLoaderRoute: typeof LaboratorioIaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metodologia': {
+      id: '/metodologia'
+      path: '/metodologia'
+      fullPath: '/metodologia'
+      preLoaderRoute: typeof MetodologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/observatorio': {
+      id: '/observatorio'
+      path: '/observatorio'
+      fullPath: '/observatorio'
+      preLoaderRoute: typeof ObservatorioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ImpactoEsgRoute: ImpactoEsgRoute,
+  LaboratorioIaRoute: LaboratorioIaRoute,
+  MetodologiaRoute: MetodologiaRoute,
+  ObservatorioRoute: ObservatorioRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
