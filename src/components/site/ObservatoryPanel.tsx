@@ -74,9 +74,9 @@ export function ObservatoryPanel() {
       </form>
       <div role="status" aria-live="polite" aria-atomic="true" className="label-mono mt-6 text-muted-foreground">{natureLabels[nature]} · {rows.length} unidades fictícias na seleção · {period === "demo-1" ? "janela 01" : "janela 02"}</div>
       <dl className="my-8 grid gap-6 border-b border-foreground pb-8 sm:grid-cols-3">
-        <div><dt className="label-mono">Unidades na seleção</dt><dd className="mt-3 font-display text-5xl">{summary.count}</dd><p className="mt-2 text-sm text-muted-foreground">Contagem de registros; não bairros.</p></div>
-        <div><dt className="label-mono">Superfície · média simples</dt><dd className="mt-3 font-display text-5xl">{summary.temperature === null ? "—" : format(summary.temperature)} <span className="text-2xl">°C</span></dd><p className="mt-2 text-sm text-muted-foreground">Simulada; sem ponderação por área.</p></div>
-        <div><dt className="label-mono">Vegetação · média simples</dt><dd className="mt-3 font-display text-5xl">{summary.vegetation === null ? "—" : format(summary.vegetation)} <span className="text-2xl">%</span></dd><p className="mt-2 text-sm text-muted-foreground">Simulada; não é o total municipal.</p></div>
+        <div><dt className="label-mono">Unidades na seleção</dt><dd className="mt-3 font-display text-5xl">{summary.count}</dd><dd className="mt-2 text-sm text-muted-foreground">Contagem de registros; não bairros.</dd></div>
+        <div><dt className="label-mono">Superfície · média simples</dt><dd className="mt-3 font-display text-5xl">{summary.temperature === null ? "—" : format(summary.temperature)} <span className="text-2xl">°C</span></dd><dd className="mt-2 text-sm text-muted-foreground">Simulada; sem ponderação por área.</dd></div>
+        <div><dt className="label-mono">Vegetação · média simples</dt><dd className="mt-3 font-display text-5xl">{summary.vegetation === null ? "—" : format(summary.vegetation)} <span className="text-2xl">%</span></dd><dd className="mt-2 text-sm text-muted-foreground">Simulada; não é o total municipal.</dd></div>
       </dl>
       <p className="mb-8 text-sm leading-relaxed text-muted-foreground"><strong className="text-foreground">Fonte e cálculo dos indicadores:</strong> conjunto didático v1; soma dos valores selecionados dividida pela contagem de registros. Sem registros, as médias ficam indisponíveis (—), nunca iguais a zero.</p>
       {rows.length ? <>
