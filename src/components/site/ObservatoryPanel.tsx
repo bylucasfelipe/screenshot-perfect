@@ -26,8 +26,8 @@ function ComparisonChart({ rows, metric }: { rows: Observation[]; metric: Metric
       </div>
       <p className="mt-4 text-sm text-muted-foreground">Unidades fictícias A–F · janela demonstrativa 01, sem data de observação real.</p>
       <svg viewBox={`0 0 640 ${60 + rows.length * 56}`} className="mt-6 hidden w-full sm:block" role="img" aria-labelledby={`${id}-title ${id}-desc`}>
-        <title id={`${id}-title`}>{heading} por unidade fictícia, em {unit}</title>
-        <desc id={`${id}-desc`}>{rows.map((row) => `${row.label}: ${format(row[metric])} ${unit}`).join("; ")}. Valores didáticos, não medições. Eixo de zero a {max} {unit}. Os mesmos valores estão na tabela a seguir.</desc>
+        <title id={`${id}-title`}>{`${heading} por unidade fictícia, em ${unit}`}</title>
+        <desc id={`${id}-desc`}>{`${rows.map((row) => `${row.label}: ${format(row[metric])} ${unit}`).join("; ")}. Valores didáticos, não medições. Eixo de zero a ${max} ${unit}. Os mesmos valores estão na tabela a seguir.`}</desc>
         {[0, 1, 2, 3, 4].map((tick) => <g key={tick} className="stroke-border fill-charcoal"><line x1={210 + tick * 90} x2={210 + tick * 90} y1="12" y2={rows.length * 56 + 18} /><text x={210 + tick * 90} y={rows.length * 56 + 44} textAnchor="middle" stroke="none" fontSize="12" className="font-mono">{max * tick / 4}</text></g>)}
         {rows.map((row, index) => <g key={row.id}>
           <text x="0" y={index * 56 + 37} className="fill-charcoal" fontSize="14">{row.label}</text>
@@ -74,9 +74,9 @@ export function ObservatoryPanel() {
       </form>
       <div role="status" aria-live="polite" aria-atomic="true" className="label-mono mt-6 text-muted-foreground">{natureLabels[nature]} · {rows.length} unidades fictícias na seleção · {period === "demo-1" ? "janela 01" : "janela 02"}</div>
       <dl className="my-8 grid gap-6 border-b border-foreground pb-8 sm:grid-cols-3">
-        <div><dt className="label-mono">Unidades na seleção</dt><dd className="mt-3 font-display text-5xl">{summary.count}</dd><p className="mt-2 text-sm text-muted-foreground">Contagem de registros; não bairros.</p></div>
-        <div><dt className="label-mono">Superfície · média simples</dt><dd className="mt-3 font-display text-5xl">{summary.temperature === null ? "—" : format(summary.temperature)} <span className="text-2xl">°C</span></dd><p className="mt-2 text-sm text-muted-foreground">Simulada; sem ponderação por área.</p></div>
-        <div><dt className="label-mono">Vegetação · média simples</dt><dd className="mt-3 font-display text-5xl">{summary.vegetation === null ? "—" : format(summary.vegetation)} <span className="text-2xl">%</span></dd><p className="mt-2 text-sm text-muted-foreground">Simulada; não é o total municipal.</p></div>
+        <div><dt className="label-mono">Unidades na seleção</dt><dd className="mt-3 font-display text-5xl">{summary.count}</dd><dd className="mt-2 text-sm text-muted-foreground">Contagem de registros; não bairros.</dd></div>
+        <div><dt className="label-mono">Superfície · média simples</dt><dd className="mt-3 font-display text-5xl">{summary.temperature === null ? "—" : format(summary.temperature)} <span className="text-2xl">°C</span></dd><dd className="mt-2 text-sm text-muted-foreground">Simulada; sem ponderação por área.</dd></div>
+        <div><dt className="label-mono">Vegetação · média simples</dt><dd className="mt-3 font-display text-5xl">{summary.vegetation === null ? "—" : format(summary.vegetation)} <span className="text-2xl">%</span></dd><dd className="mt-2 text-sm text-muted-foreground">Simulada; não é o total municipal.</dd></div>
       </dl>
       <p className="mb-8 text-sm leading-relaxed text-muted-foreground"><strong className="text-foreground">Fonte e cálculo dos indicadores:</strong> conjunto didático v1; soma dos valores selecionados dividida pela contagem de registros. Sem registros, as médias ficam indisponíveis (—), nunca iguais a zero.</p>
       {rows.length ? <>
