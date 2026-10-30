@@ -26,8 +26,8 @@ function ComparisonChart({ rows, metric }: { rows: Observation[]; metric: Metric
       </div>
       <p className="mt-4 text-sm text-muted-foreground">Unidades fictícias A–F · janela demonstrativa 01, sem data de observação real.</p>
       <svg viewBox={`0 0 640 ${60 + rows.length * 56}`} className="mt-6 hidden w-full sm:block" role="img" aria-labelledby={`${id}-title ${id}-desc`}>
-        <title id={`${id}-title`}>{heading} por unidade fictícia, em {unit}</title>
-        <desc id={`${id}-desc`}>{rows.map((row) => `${row.label}: ${format(row[metric])} ${unit}`).join("; ")}. Valores didáticos, não medições. Eixo de zero a {max} {unit}. Os mesmos valores estão na tabela a seguir.</desc>
+        <title id={`${id}-title`}>{`${heading} por unidade fictícia, em ${unit}`}</title>
+        <desc id={`${id}-desc`}>{`${rows.map((row) => `${row.label}: ${format(row[metric])} ${unit}`).join("; ")}. Valores didáticos, não medições. Eixo de zero a ${max} ${unit}. Os mesmos valores estão na tabela a seguir.`}</desc>
         {[0, 1, 2, 3, 4].map((tick) => <g key={tick} className="stroke-border fill-charcoal"><line x1={210 + tick * 90} x2={210 + tick * 90} y1="12" y2={rows.length * 56 + 18} /><text x={210 + tick * 90} y={rows.length * 56 + 44} textAnchor="middle" stroke="none" fontSize="12" className="font-mono">{max * tick / 4}</text></g>)}
         {rows.map((row, index) => <g key={row.id}>
           <text x="0" y={index * 56 + 37} className="fill-charcoal" fontSize="14">{row.label}</text>
