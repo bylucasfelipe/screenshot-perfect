@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataNotes } from "@/components/site/DataNotes";
+import { SustainableGoals } from "@/components/site/SustainableGoals";
 
 export const Route = createFileRoute("/impacto-esg")({
   head: () => ({
     meta: [
       { title: "Impacto e ESG — Termômetro Urbano" },
-      { name: "description", content: "Indicadores ambientais, sociais e de governança com períodos de referência e critérios de medição." },
+      { name: "description", content: "Indicadores ESG propostos e relação educacional com os ODS 11, 13, 3 e 10, sem alegações de impacto comprovado." },
       { property: "og:title", content: "Impacto e ESG — Termômetro Urbano" },
-      { property: "og:description", content: "Indicadores ESG com critérios de medição transparentes." },
+      { property: "og:description", content: "Critérios de medição transparentes e relação com cidades sustentáveis, clima, saúde e equidade." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -17,6 +18,7 @@ export const Route = createFileRoute("/impacto-esg")({
       <section className="map-grid border-b border-foreground"><div className="mx-auto max-w-[1400px] px-5 py-12 md:px-8 md:py-16"><p className="label-mono text-terracotta">Prancha 04 · Indicadores propostos</p><h1 className="mt-5 text-5xl md:text-7xl">Impacto e ESG</h1><p className="mt-6 max-w-2xl text-lg leading-relaxed">Definir o que medir vem antes de afirmar o que mudou. Este é um quadro de avaliação proposto, não um relatório de resultados.</p></div></section>
       <DataNotes/>
       <div className="mx-auto max-w-[1400px] px-5 md:px-8">
+        <SustainableGoals />
         <section className="border-b border-foreground py-10"><p className="label-mono text-terracotta">Estado da evidência</p><p className="mt-4 max-w-3xl leading-relaxed">Não há operação real, empresas atendidas, intervenções avaliadas ou impactos comprovados. Todos os indicadores abaixo estão <strong>não medidos</strong>. Não há linha de base nem meta numérica aprovada; a ausência de medição não equivale a resultado zero.</p></section>
         {[
           { code: "E", title: "Ambiental", question: "Mudança na paisagem e no calor", indicators: [
