@@ -43,6 +43,7 @@ function ThermalProfile() {
         <span>Fig. 02 — Perfil térmico <span className="text-terracotta">ilustrativo</span>, sem escala de valores</span>
         <span>Periferia arborizada</span>
       </figcaption>
+      <p className="mt-3 text-xs leading-relaxed text-muted-foreground">Fonte: ilustração Termômetro Urbano. Método: curva e paisagem desenhadas manualmente para explicar um conceito, sem dados observados, unidade física ou escala espacial. Não é um transecto geográfico real de São Paulo.</p>
     </figure>
   );
 }
