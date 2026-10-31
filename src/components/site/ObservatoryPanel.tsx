@@ -6,7 +6,7 @@ import { filterObservations, natureLabels, observationCsv, summarizeObservations
 const format = (value: number) => value.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const selectClass = "mt-2 min-h-11 w-full border border-foreground bg-background px-3 text-sm text-foreground";
 const emptyCopy: Record<DataNature, string> = {
-  simulated: "Não há registros simulados no período selecionado. O conjunto didático contém apenas a janela demonstrativa 01.",
+  simulated: "Não há registros simulados para esta seleção. O conjunto didático contém as janelas demonstrativas 01 e 02.",
   public: "Nenhum conjunto público real foi incorporado. Consulte as fontes e os critérios de validação na metodologia.",
   estimate: "Não há modelo calibrado nem estimativas validadas. Valores simulados não são estimativas de condições reais.",
   target: "Metas não são observações. Consulte as propostas de indicadores em Impacto e ESG; não há metas numéricas aprovadas.",
@@ -18,13 +18,14 @@ function ComparisonChart({ rows, metric }: { rows: Observation[]; metric: Metric
   const unit = temperature ? "°C" : "%";
   const max = temperature ? 40 : 100;
   const heading = temperature ? "Temperatura de superfície" : "Cobertura vegetal";
+  const windowLabel = rows[0]?.period === "demo-2" ? "02" : "01";
   return (
     <figure aria-labelledby={`${id}-heading`}>
       <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-foreground pb-4">
         <h2 id={`${id}-heading`} className="text-3xl md:text-4xl">{heading}</h2>
         <p className="label-mono text-terracotta">{unit} · Dados simulados</p>
       </div>
-      <p className="mt-4 text-sm text-muted-foreground">Unidades fictícias A–F · janela demonstrativa 01, sem data de observação real.</p>
+      <p className="mt-4 text-sm text-muted-foreground">Unidades fictícias A–F · janela demonstrativa {windowLabel}, sem data de observação real.</p>
       <svg viewBox={`0 0 640 ${60 + rows.length * 56}`} className="mt-6 hidden w-full sm:block" role="img" aria-labelledby={`${id}-title ${id}-desc`}>
         <title id={`${id}-title`}>{`${heading} por unidade fictícia, em ${unit}`}</title>
         <desc id={`${id}-desc`}>{`${rows.map((row) => `${row.label}: ${format(row[metric])} ${unit}`).join("; ")}. Valores didáticos, não medições. Eixo de zero a ${max} ${unit}. Os mesmos valores estão na tabela a seguir.`}</desc>
@@ -43,7 +44,7 @@ function ComparisonChart({ rows, metric }: { rows: Observation[]; metric: Metric
       </ol>
       <figcaption className="mt-6 space-y-3 border-t border-foreground pt-4 text-sm leading-relaxed">
         <p><span className={`mr-2 inline-block h-2.5 w-6 ${temperature ? "bg-terracotta" : "bg-vegetal"}`} aria-hidden="true"/><strong>Legenda:</strong> comprimento da barra = {heading.toLowerCase()}; escala fixa de 0 a {max} {unit}, sem localização geográfica.</p>
-        <p><strong>Fonte:</strong> Termômetro Urbano · conjunto didático v1, seis registros fictícios. INMET, IBGE e MapBiomas não são a origem destes valores.</p>
+        <p><strong>Fonte:</strong> Termômetro Urbano · conjunto didático v1, seis unidades fictícias por janela. INMET, IBGE e MapBiomas não são a origem destes valores.</p>
         <p><strong>Método:</strong> valores definidos manualmente para contrastar tipos de paisagem; não resultam de sensores, satélites ou IA. A seleção apenas filtra os registros, sem interpolação.</p>
         <p><strong>Leitura:</strong> {temperature ? "A variação do conjunto ilustra diferenças térmicas possíveis; não mede ilha de calor real nem temperatura do ar." : "A proporção vegetal é fictícia; não foi classificada por imagem e não representa área verde disponível por pessoa."} A comparação não demonstra causalidade.</p>
       </figcaption>
@@ -85,7 +86,7 @@ export function ObservatoryPanel() {
         <section aria-labelledby="table-title" className="mt-12 border-t border-foreground pt-8">
           <div className="flex flex-wrap items-center justify-between gap-4"><h2 id="table-title" className="text-3xl">Registros da seleção</h2><Button variant="outline" className="min-h-11 shadow-none" onClick={download}>Baixar CSV simulado</Button></div>
           <div className="mt-5 overflow-x-auto" role="region" aria-label="Tabela de registros simulados" tabIndex={0}>
-            <table className="w-full min-w-[520px] text-left text-sm"><caption className="pb-4 text-left text-muted-foreground">Dados simulados · janela 01 · Fonte: conjunto didático v1. Mesmos registros do gráfico.</caption><thead className="border-y border-foreground"><tr><th scope="col" className="py-3 pr-4">Unidade fictícia</th><th scope="col" className="py-3 pr-4">Superfície (°C)</th><th scope="col" className="py-3">Vegetação (%)</th></tr></thead><tbody>{rows.map((row) => <tr key={row.id} className="border-b border-border"><th scope="row" className="py-4 pr-4 font-normal">{row.label}</th><td className="font-mono">{format(row.temperature)}</td><td className="font-mono">{format(row.vegetation)}</td></tr>)}</tbody></table>
+            <table className="w-full min-w-[520px] text-left text-sm"><caption className="pb-4 text-left text-muted-foreground">Dados simulados · janela {period === "demo-2" ? "02" : "01"} · Fonte: conjunto didático v1. Mesmos registros do gráfico.</caption><thead className="border-y border-foreground"><tr><th scope="col" className="py-3 pr-4">Unidade fictícia</th><th scope="col" className="py-3 pr-4">Superfície (°C)</th><th scope="col" className="py-3">Vegetação (%)</th></tr></thead><tbody>{rows.map((row) => <tr key={row.id} className="border-b border-border"><th scope="row" className="py-4 pr-4 font-normal">{row.label}</th><td className="font-mono">{format(row.temperature)}</td><td className="font-mono">{format(row.vegetation)}</td></tr>)}</tbody></table>
           </div>
         </section>
       </> : <section aria-labelledby="empty-title" className="border-y border-foreground py-12"><p className="label-mono text-terracotta">Sem dados para esta seleção</p><h2 id="empty-title" className="mt-3 text-3xl">Nenhum registro disponível</h2><p className="mt-4 max-w-2xl leading-relaxed">{emptyCopy[nature]}</p><div className="mt-6 flex flex-wrap items-center gap-5"><Button onClick={reset} className="min-h-11 shadow-none">Voltar ao conjunto simulado</Button><Link to={nature === "target" ? "/impacto-esg" : "/metodologia"} className="underline underline-offset-4">{nature === "target" ? "Ver indicadores propostos" : "Consultar metodologia"}</Link></div></section>}
