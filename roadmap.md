@@ -6,3 +6,5 @@
 - [x] Completar Laboratório de IA com estudo educacional e demonstração local explicitamente simulada.
 - [x] Integrar ODS 11 e 13 como centrais e ODS 3 e 10 como relacionados no Impacto e ESG.
 - [x] Verificar interação, navegação e preservação do observatório e demais páginas.
+- [ ] Preencher lacunas demonstrativas sem alterar conteúdo existente ou apresentar simulações como dados reais.
+- [ ] Validar valores, filtros, páginas e menus em computador, tablet e celular.
