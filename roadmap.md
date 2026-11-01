@@ -8,3 +8,5 @@
 - [x] Verificar interação, navegação e preservação do observatório e demais páginas.
 - [x] Preencher lacunas demonstrativas sem alterar conteúdo existente ou apresentar simulações como dados reais.
 - [x] Validar valores, filtros, páginas e menus em computador, tablet e celular.
+- [ ] Adicionar mapa esquemático A–F integrado aos filtros, seleção e comparações do Observatório.
+- [ ] Validar coerência, teclado, acessibilidade e telas menores sem alterar outras páginas.
