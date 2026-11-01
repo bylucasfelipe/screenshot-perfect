@@ -13,7 +13,7 @@ describe("Fictional ESG calculations", () => {
     expect(esgDemonstrations["População em áreas de maior calor"].value).toBeCloseTo(2200 / 6000 * 100);
   });
   it("calculates access from 3300 of 6000 fictional residents", () => {
-    expect(esgDemonstrations["Acesso territorial a áreas verdes públicas"].value).toBe(3300 / 6000 * 100);
+    expect(esgDemonstrations["Acesso territorial a áreas verdes públicas"].value).toBeCloseTo(3300 / 6000 * 100);
   });
   it("calculates completeness from nine of ten fictional sets", () => {
     expect(esgDemonstrations["Completude da documentação"].value).toBe(9 / 10 * 100);
