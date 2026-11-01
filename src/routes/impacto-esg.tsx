@@ -1,12 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { DataNotes } from "@/components/site/DataNotes";
 import { SustainableGoals } from "@/components/site/SustainableGoals";
+import { esgDemonstrations } from "@/lib/observatory-data";
+
+const number = (value: number) => value.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
 export const Route = createFileRoute("/impacto-esg")({
   head: () => ({
     meta: [
       { title: "Impacto e ESG — Termômetro Urbano" },
-      { name: "description", content: "Indicadores ESG propostos e relação educacional com os ODS 11, 13, 3 e 10, sem alegações de impacto comprovado." },
+      { name: "description", content: "Indicadores ESG com valores, linhas de base e metas fictícias para demonstração e relação educacional com os ODS 11, 13, 3 e 10." },
       { property: "og:title", content: "Impacto e ESG — Termômetro Urbano" },
       { property: "og:description", content: "Critérios de medição transparentes e relação com cidades sustentáveis, clima, saúde e equidade." },
       { property: "og:type", content: "website" },
@@ -19,7 +22,7 @@ export const Route = createFileRoute("/impacto-esg")({
       <DataNotes/>
       <div className="mx-auto max-w-[1400px] px-5 md:px-8">
         <SustainableGoals />
-        <section className="border-b border-foreground py-10"><p className="label-mono text-terracotta">Estado da evidência</p><p className="mt-4 max-w-3xl leading-relaxed">Não há operação real, empresas atendidas, intervenções avaliadas ou impactos comprovados. Todos os indicadores abaixo estão <strong>não medidos</strong>. Não há linha de base nem meta numérica aprovada; a ausência de medição não equivale a resultado zero.</p></section>
+        <section className="border-b border-foreground py-10"><p className="label-mono text-terracotta">Dados demonstrativos · valores fictícios</p><p className="mt-4 max-w-3xl leading-relaxed">Os seis indicadores abaixo apresentam valores simulados, com linhas de base e metas igualmente fictícias. Janelas 01, 02 e 03 são cenários sequenciais de demonstração, não datas reais. O indicador populacional usa o recorte térmico da janela 01, conforme seu cálculo. Não há operação real, empresas atendidas, intervenções avaliadas ou impactos comprovados; as metas não são compromissos aprovados.</p></section>
         {[
           { code: "E", title: "Ambiental", question: "Mudança na paisagem e no calor", indicators: [
             { name: "Cobertura vegetal", unit: "% da área", formula: "Área das classes vegetais definidas ÷ área válida do recorte × 100.", source: "MapBiomas: coleção, ano, classes e geometria documentados.", period: "Anual, em recorte territorial fixo.", limit: "Requer classes comparáveis e área sem dados reportada. Não mede acesso à sombra nem impacto de uma ação.", goal: "Avaliar manutenção ou ampliação da cobertura, após estabelecer linha de base." },

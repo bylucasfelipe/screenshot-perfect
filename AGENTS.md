@@ -10,6 +10,7 @@
 <!-- LOVABLE:END -->
 
 - Keep educational observation fixtures and pure filtering, summary, and export logic in a browser-safe module; this makes provenance and indicator consistency independently testable.
+- Keep additional demo windows and ESG scenario calculations in the observation data module while preserving the original observations as the laboratory input; this keeps existing rankings stable and cross-page values testable.
 - Keep shared data-nature explanations in one site component so analytical pages distinguish observations, simulations, estimates, and goals consistently.
 - Use Radix Dialog for the full-screen small-screen navigation so focus containment, Escape dismissal, and restoration are managed accessibly.
 - Keep laboratory fixtures and weighted ranking in a browser-safe pure module that reuses observatory inputs; this preserves input consistency and allows testing the didactic calculation without external services.
