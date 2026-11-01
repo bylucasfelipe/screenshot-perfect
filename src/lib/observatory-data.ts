@@ -68,3 +68,39 @@ export function observationCsv(rows: Observation[]) {
   const header = "id;unidade_ficticia;paisagem;periodo;temperatura_superficie_c;vegetacao_pct;natureza;fonte";
   return [header, ...rows.map((row) => [row.id, row.label, row.landscape, row.period, row.temperature, row.vegetation, "simulado", "Termômetro Urbano — conjunto didático v1"].join(";"))].join("\n");
 }
+
+export type Intensity = "all" | "low" | "medium" | "high";
+export const metricDetails = {
+  temperature: { label: "Temperatura de superfície", unit: "°C", max: 40 },
+  vegetation: { label: "Cobertura vegetal", unit: "%", max: 100 },
+} as const;
+export const intensityBands = {
+  temperature: [
+    { id: "low", label: "Menor · < 30 °C", color: "bg-heat-1", fill: "fill-heat-1" },
+    { id: "medium", label: "Intermediária · 30 a < 34 °C", color: "bg-heat-3", fill: "fill-heat-3" },
+    { id: "high", label: "Maior · ≥ 34 °C", color: "bg-heat-4", fill: "fill-heat-4" },
+  ],
+  vegetation: [
+    { id: "low", label: "Menor · < 20%", color: "bg-heat-4", fill: "fill-heat-4" },
+    { id: "medium", label: "Intermediária · 20 a < 50%", color: "bg-heat-3", fill: "fill-heat-3" },
+    { id: "high", label: "Maior · ≥ 50%", color: "bg-heat-1", fill: "fill-heat-1" },
+  ],
+} as const;
+
+// Fixed didactic bands, not environmental/health thresholds or inferred risk.
+export function observationIntensity(row: Observation, metric: Metric): Exclude<Intensity, "all"> {
+  const [lower, upper] = metric === "temperature" ? [30, 34] : [20, 50];
+  return row[metric] < lower ? "low" : row[metric] < upper ? "medium" : "high";
+}
+
+export function exploreObservations(nature: DataNature, period: string, landscape: Landscape, metric: Metric, intensity: Intensity, region: string) {
+  const mapRows = filterObservations(nature, period, landscape);
+  const rows = mapRows.filter((row) => intensity === "all" || observationIntensity(row, metric) === intensity);
+  const selected = rows.find((row) => row.id === region);
+  const summary = summarizeObservations(selected ? [selected] : rows);
+  const reference = summarizeObservations(filterObservations(nature, period, "all"));
+  const difference = selected && reference[metric] !== null ? selected[metric] - reference[metric] : null;
+  const previous = selected && period === "demo-2" ? observations.find((row) => row.id === selected.id) : undefined;
+  const periodDifference = selected && previous ? selected[metric] - previous[metric] : null;
+  return { mapRows, rows, selected, summary, reference, difference, periodDifference };
+}
