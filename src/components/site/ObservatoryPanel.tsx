@@ -13,7 +13,7 @@ const emptyCopy: Record<DataNature, string> = {
   target: "Metas não são observações. Consulte as propostas de indicadores em Impacto e ESG; não há metas numéricas aprovadas.",
 };
 
-function ComparisonChart({ rows, metric, selectedId, onSelect }: { rows: Observation[]; metric: Metric; selectedId?: string; onSelect: (id: string) => void }) {
+function ComparisonChart({ rows, metric, selectedId, onSelect }: { rows: Observation[]; metric: Metric; selectedId: string | undefined; onSelect: (id: string) => void }) {
   const id = useId();
   const temperature = metric === "temperature";
   const unit = temperature ? "°C" : "%";

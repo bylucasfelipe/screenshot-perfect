@@ -14,7 +14,7 @@ const sectors = [
 ];
 const number = (value: number) => value.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
-export function ExplorationMap({ mapRows, rows, metric, selectedId, onSelect }: { mapRows: Observation[]; rows: Observation[]; metric: Metric; selectedId?: string; onSelect: (id: string) => void }) {
+export function ExplorationMap({ mapRows, rows, metric, selectedId, onSelect }: { mapRows: Observation[]; rows: Observation[]; metric: Metric; selectedId: string | undefined; onSelect: (id: string) => void }) {
   const id = useId();
   const { label, unit } = metricDetails[metric];
   return <section aria-labelledby={`${id}-heading`} className="mb-10 border-y border-foreground py-8">
@@ -29,7 +29,7 @@ export function ExplorationMap({ mapRows, rows, metric, selectedId, onSelect }: 
           const band = row ? intensityBands[metric].find((item) => item.id === observationIntensity(row, metric)) : undefined;
           const detail = row ? `${row.label}: ${number(row[metric])} ${unit}. ${band?.label}. Dados simulados.` : `Unidade ${sector.id.toUpperCase()}: fora da seleção de paisagem.`;
           return <Tooltip key={sector.id}><TooltipTrigger asChild>
-            <Button asChild variant="ghost" className="group h-auto p-0 shadow-none hover:bg-transparent focus-visible:ring-0">
+            <Button asChild variant="ghost" className="group block h-auto p-0 shadow-none hover:bg-transparent focus-visible:ring-0">
               <g role="button" tabIndex={available ? 0 : -1} aria-disabled={!available} aria-pressed={selected} aria-label={`${detail}${!available ? " Fora dos filtros." : ""}`} onClick={() => { if (available) onSelect(sector.id); }} onKeyDown={(event) => { if (available && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); onSelect(sector.id); } }} className={available ? "cursor-pointer" : "cursor-default"}>
                 <title>{detail}</title>
                 <path d={sector.path} className={`${available ? band?.fill : "fill-paper-deep"} stroke-foreground group-focus-visible:stroke-terracotta`} strokeWidth={selected ? 5 : 1} />
