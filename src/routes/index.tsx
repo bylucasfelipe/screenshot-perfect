@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HeatMap } from "@/components/site/HeatMap";
 import { sections } from "@/components/site/SiteHeader";
+import conceptualHeatMap from "@/assets/mapa-calor-conceitual.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -71,7 +72,13 @@ function Index() {
             </div>
           </div>
           <div className="lg:pl-8">
-            <HeatMap />
+            <img
+              src={conceptualHeatMap}
+              width={1254}
+              height={1254}
+              className="block aspect-square h-auto w-full object-contain"
+              alt="Mapa ilustrativo de calor urbano, mostrando edificações, áreas de menor a maior intensidade térmica e árvores e vegetação. A legenda distingue mais fresco, intermediário, quente e mais quente. Ilustração conceitual, não geográfica e sem dados de medição."
+            />
           </div>
         </div>
       </section>
