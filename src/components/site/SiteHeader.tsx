@@ -75,7 +75,7 @@ export function SiteFooter() {
         <div>
           <p className="label-mono text-muted-foreground">Dados</p>
           <p className="mt-3 text-sm">
-            Visualizações didáticas usam dados simulados ou esquemas conceituais. Indicadores ESG são propostas, não resultados. Nenhum conjunto real foi incorporado. Referências:
+            Visualizações didáticas usam dados simulados ou esquemas conceituais. Indicadores ESG apresentam cenários e metas fictícios, não resultados reais. Nenhum conjunto real foi incorporado. Referências:
             INMET, IBGE, MapBiomas, GeoSampa.
           </p>
         </div>

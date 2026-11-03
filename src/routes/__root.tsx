@@ -11,6 +11,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import { SiteHeader, SiteFooter } from "../components/site/SiteHeader";
+import { AccessibilityWidget } from "../components/site/AccessibilityWidget";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Button } from "@/components/ui/button";
@@ -127,6 +128,7 @@ function RootComponent() {
       <SiteHeader />
       <main id="conteudo" tabIndex={-1} className="scroll-mt-16"><Outlet /></main>
       <SiteFooter />
+      <AccessibilityWidget />
     </QueryClientProvider>
   );
 }
