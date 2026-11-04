@@ -11,7 +11,6 @@ export const sections = [
   { n: "04", to: "/impacto-esg", label: "Impacto e ESG", desc: "Indicadores, períodos de referência e critérios de medição." },
 ] as const;
 
-
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
