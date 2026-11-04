@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
+import logoTermometroUrbano from "@/assets/logo-termometro-urbano.png";
 
 export const sections = [
   { n: "01", to: "/observatorio", label: "Observatório", desc: "Calor de superfície e vegetação em unidades fictícias." },
@@ -10,25 +11,19 @@ export const sections = [
   { n: "04", to: "/impacto-esg", label: "Impacto e ESG", desc: "Indicadores, períodos de referência e critérios de medição." },
 ] as const;
 
-function Mark() {
-  return (
-    <svg width="14" height="28" viewBox="0 0 14 28" aria-hidden="true" className="text-foreground">
-      <rect x="4.5" y="1" width="5" height="18" rx="2.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <circle cx="7" cy="22" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <line x1="7" y1="10" x2="7" y2="22" className="stroke-terracotta" strokeWidth="2" />
-      <circle cx="7" cy="22" r="2.4" className="fill-terracotta" />
-    </svg>
-  );
-}
-
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-40 border-b border-foreground bg-background">
       <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between gap-3 px-5 md:px-8">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <Mark />
-          <span className="font-display text-base font-semibold sm:text-lg">Termômetro Urbano</span>
+          <img
+            src={logoTermometroUrbano}
+            width={1600}
+            height={571}
+            alt="Termômetro Urbano"
+            className="site-logo h-11 w-auto sm:h-12"
+          />
         </Link>
         <nav aria-label="Principal" className="hidden lg:block">
           <ul className="flex items-center gap-6">

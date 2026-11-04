@@ -163,3 +163,10 @@ html.a11y-contrast {
   --border: oklch(0.96 0.01 85 / 55%);
   --input: oklch(0.96 0.01 85 / 60%);
 }
+
+/* Logo PNG (fundo transparente): em alto contraste o cabeçalho escurece, então a
+   marca recebe uma placa clara para continuar legível sem filtros na imagem. */
+html.a11y-contrast .site-logo {
+  background-color: var(--charcoal);
+  padding-inline: 0.25rem;
+}
