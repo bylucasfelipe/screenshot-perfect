@@ -10,3 +10,4 @@
 - [x] Validar valores, filtros, páginas e menus em computador, tablet e celular.
 - [x] Adicionar mapa esquemático A–F integrado aos filtros, seleção e comparações do Observatório.
 - [x] Validar coerência, teclado, acessibilidade e telas menores sem alterar outras páginas.
+- [x] Substituir a logo do cabeçalho pela imagem enviada, com fundo removido, texto alternativo e verificação em computador e celular.
